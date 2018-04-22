@@ -27,11 +27,50 @@ googleAnalytics = ""
 
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
-hasCJKLanguage = false  # Set `true` for Chinese/Japanese/Korean languages.
+hasCJKLanguage = true # Set `true` for Chinese/Japanese/Korean languages.
 defaultContentLanguageInSubdir = false
 
 # Get last modified date for content from Git?
 enableGitInfo = false
+
+
+# disableFastRender = true        # Hugo 0.30
+
+# [Author]
+#   name = "Jimmy M Gong"
+#   email = "yssource@163.com"
+#   bio = "A coder, a geek who likes playing with command-line tools. Uses Emacs."
+#   photo = "/images/me.png"
+
+# [Social]
+#   github = "yssource"
+#   twitter = "yssource"
+
+# [Permalinks]
+#   # https://gohugo.io/content-management/urls/#permalink-configuration-values
+#   # | :year        | the 4-digit year                           |
+#   # | :month       | the 2-digit month                          |
+#   # | :monthname   | the name of the month                      |
+#   # | :day         | the 2-digit day                            |
+#   # | :weekday     | the 1-digit day of the week (Sunday = 0)   |
+#   # | :weekdayname | the name of the day of the week            |
+#   # | :yearday     | the 1- to 3-digit day of the year          |
+#   # | :section     | the content's section                      |
+#   # | :sections    | the content's sections hierarchy           |
+#   # | :title       | the content's title                        |
+#   # | :slug        | the content's slug (or title, if no slug)  |
+#   # | :filename    | the content's filename (without extension) |
+
+#   # Below, we have:
+#   #
+#   #   foo = "bar"
+#   #
+#   # where 'foo' is the section name which we want to have the custom
+#   # permalinks. If foo is 'posts', it will apply to content in "content/posts/"
+#   # dir. The "bar" portion is how you want the links to look.
+#   post = "/:filename/"
+#   # post = "/:year/:month/:title/"
+#   # notes = "/notes/:filename/"
 
 [outputs]
   home = [ "HTML", "CSS", "RSS" ]
@@ -45,6 +84,7 @@ enableGitInfo = false
   smartypants = true  # `false` disables all smart punctuation substitutions (e.g. smart quotes, dashes, fractions).
 
 [params]
+
   # Color theme.
   #   Choose from `default`, `ocean`, `forest`, `coffee`, `dark`, or `1950s`.
   color_theme = "default"
@@ -242,6 +282,14 @@ enableGitInfo = false
     icon = "github"
     icon_pack = "fa"
     link = "//github.com/gcushen"
+
+  # # import from https://gitlab.com/kaushalmodi/kaushalmodi.gitlab.io
+  # cache_busting = true
+  # [Params.source]
+  #   url = "https://github.com/yssource/home.git" # Mandatory
+  #   org_dir = "content-org"
+  #   md_dir = "content"
+  #   ox_hugo = true
 
 
 # Navigation Links

@@ -1,0 +1,288 @@
+#+hugo_base_dir: ../
+#+seq_todo: TODO DRAFT DONE
+#+property: header-args :eval never-export
+
+#+options: creator:t
+
+#+macro: tex @@html:<span class="tex">T<sub>e</sub>X</span>@@
+#+macro: latex @@html:<span class="latex">L<sup>a</sup>T<sub>e</sub>X</span>@@
+#+macro: xetex @@html:<span class="xetex">X<sub>&#398;</sub>T<sub>E</sub>X</span>@@
+
+#+macro: guser [[https://www.github.com/$1][*@$1*]] from GitHub
+#+macro: ruser [[https://www.reddit.com/user/$1][*/u/$1*]] from Reddit
+#+macro: tuser [[https://www.twitter.com/$1][*@$1*]] from Twitter
+
+#+macro: inforef @@html:<a href="$1"><abbr title="Read the same section within Emacs by doing 'C-h i g $2'">$2</abbr></a>@@
+
+#+macro: end @@html:<div class="center"><b>§</b></div>@@
+
+#+macro: tmux_conf [[https://github.com/kaushalmodi/dotfiles/blob/master/tmux/dot-tmux.conf][=.tmux.conf=]]
+
+#+macro: comment_thanks Thanks to the tip in comments from /$1/,
+#+macro: update - $1 :: $2
+
+#+macro: reply @@html:<div class="reply">In reply to: <p><a class="u-in-reply-to h-cite" rel="in-reply-to" href="$1">$1</a></p></div>@@
+
+* Unix                                                                :@unix:
+** DONE Git diff Minified JS and CSS :minified:javascript:git:diff:css:magit:
+CLOSED: [2018-03-19 Mon 18:13]
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: git-diff-minified-js-and-css
+:EXPORT_FILE_NAME: index
+:EXPORT_HUGO_IMAGES: git-diff-minified-js.png
+:EXPORT_OPTIONS: num:1
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :syndication '((twitter . 975860854573936640))
+:END:
+#+begin_description
+Make the =git diff= output be more useful when diffing minified /.js/
+and /.css/ files.
+#+end_description
+
+While working on a [[https://github.com/gohugoio/gohugoioTheme/pull/84][little PR for the Hugo doc site theme]], I learned
+that if I needed to make changes to JS/CSS, I had to commit my changes
+in both unminified and minified versions.
+
+I have a habit to always look at the diffs at the time of staging and
+committing. So it felt very unnatural to commit a minified JS where
+the diff would show just *one* changed line with thousands of
+characters of minified+uglified JS.
+
+So I started looking for solutions, and found [[https://cweiske.de/tagebuch/git-diff-minified-js.htm][this post]] by /Christian
+Weiske/ where he suggests using [[https://github.com/beautify-web/js-beautify][=js-beautify=]] to /beautify/ minified
+JS diffs.
+
+#+begin_verse
+>    /And that tool works beautifully!/
+#+end_verse
+
+- I later found out that the same tool can also be used to /beautify/
+  minified CSS.
+- .. and I installed that tool using =npm= as the =pip3= approach
+  failed with /"Collecting js-beautify.. Could not find a version that
+  satisfies the requirement js-beautify (from versions: ) No matching
+  distribution found for js-beautify"/.
+
+So here's how you can do useful =git diff= for minified JS and CSS.
+*** Install =js-beautify= using =npm=
+I see myself using =js-beautify= in many other projects too. So I
+installed it globally.
+#+begin_example
+npm install --global js-beautify
+#+end_example
+*** Configure =git= to use that tool
+Add below to your =~/.gitconfig=:
+1. Use =js-beautify= to first beautify the minified JS for the =minjs=
+   /diff configuration/, and then do a diff of those beautified files.
+2. Enable caching of those beautified files to speed up the diff, so
+   that /re-beautification/ of unmodified minified files can be
+   skipped.
+3. Similarly for minified CSS, use =js-beautify --css= to first
+   beautify the minified CSS for the =mincss= /diff configuration/.
+
+# "docker" Chroma lexer works great for .gitconfig syntax highlighting.
+#+begin_src ini
+[diff "minjs"]
+	textconv = js-beautify
+	cachetextconv = true
+[diff "mincss"]
+	textconv = js-beautify --css
+	cachetextconv = true
+#+end_src
+*** Add/update =.gitattributes= file to the project repo
+Now, in your project repo's =.gitattributes= file, you need to
+associate files with the /diff configurations/ set above.
+
+Below will use the =minjs= configuration for /*.min.js/ and
+/*.bundle.js/ files, and =mincss= configuration for /*.min.css/ and
+/main.css/.
+# "docker" Chroma lexer works great for .gitattributes syntax
+# highlighting too!
+#+begin_src ini
+*.min.js diff=minjs
+*.bundle.js diff=minjs
+*.min.css diff=mincss
+main.css diff=mincss
+#+end_src
+*** Beautiful Result
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+name: fig__git_diff_min_js
+#+caption: =git diff= of minified JS as seen in /Magit/
+[[file:images/git-diff-minified-js-and-css/git-diff-minified-js.png]]
+
+Isn't that better than how GitHub shows the /exact same commit
+diff/? :sunglasses:
+
+#+name: fig__github_diff_min_js
+#+caption: Same commit =diff= shown on /GitHub/
+[[file:images/git-diff-minified-js-and-css/github-diff-minified-js.png]]
+** Tmux                                                                :tmux:
+*** DONE Send a command to every pane/window/session in tmux :pane:window:session:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: command-to-every-pane-window-session-in-tmux
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2014-03-06T09:50:21-05:00
+:EXPORT_HUGO_USE_CODE_FOR_KBD: t
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :versions '((tmux . "2.6+"))
+:END:
+#+begin_description
+Faster way to send the same command to each and every /pane/ in your
+tmux /session/.
+#+end_description
+
+{{{update(<2018-03-20 Tue>,Optimize the =list-panes= + =send-keys=
+=tmux= commands\, rewrite the post.)}}}
+
+-----
+
+Ever wondered how you would send the =clear= command to /each pane/,
+in /each window/, in /each session/ in =tmux=, or how you would do
+source your shell config file in each after each tweak?
+
+Here are few excerpts from my {{{tmux_conf}}} that allow doing just
+that.
+**** Send command to all panes in *all* sessions
+{{{comment_thanks(Bob Fleming)}}} I learned that =tmux= has a =-a=
+switch for the =list-panes= command.
+
+From =man tmux=,
+
+#+begin_quote
+#+begin_example
+list-panes [-as] [-F format] [-t target]
+              (alias: lsp)
+        If -a is given, target is ignored and all panes on the server
+        are listed.  If -s is given, target is a session (or the
+        current session).  If neither is given, target is a window (or
+        the current window).  For the meaning of the -F flag, see the
+        FORMATS section.
+#+end_example
+#+end_quote
+
+With that knowledge, the [[#tmux-send-cmd-to-all-panes-old][older version]] of the ~E~ binding now reduces
+to,
+# "docker" Chroma lexer works great for .tmux.conf.
+#+begin_src docker
+# Send the same command to all panes/windows/sessions
+bind E command-prompt -p "Command:" \
+       "run \"tmux list-panes -a -F '##{session_name}:##{window_index}.##{pane_index}' \
+              | xargs -I PANE tmux send-keys -t PANE '%1' Enter\""
+#+end_src
+***** Usage
+- Type the following binding in any =tmux= pane: ~C-z E~[fn:6]
+- Enter a command that you would want to send to all the panes, like
+  =source ~/.alias; clear= /(this is entered in the tmux command
+  prompt)/.
+- That will source the =~/.alias= in *all* panes, and then clear the
+  terminals as well.
+***** About the =##=
+:PROPERTIES:
+:CUSTOM_ID: about-the-double-hashes
+:END:
+#+begin_note
+The =#= character needs to be escaped by another =#= and typed as
+=##=, only when used inside the =run-shell= command.
+#+end_note
+
+.. because otherwise, =tmux run-shell= command will replace the
+unescaped =#{session_name}=, =#{window_index}= and =#{pane_index}= with
+their current values *before* executing the command.
+
+With the hashes escaped, those variables will be evaluated /at run
+time/.
+
+But if you were to type the above command directly in the terminal,
+without the =run-shell= command wrapper, you would use only single
+=#=:
+#+begin_example
+tmux list-panes -s -F "#{session_name}:#{window_index}.#{pane_index}"
+#+end_example
+**** Send command to all panes in *current* session
+The =list-panes= command has another useful switch: =-s=, which takes
+an optional argument, a /session name/. If that argument is not
+supplied, it takes the current session name by default.
+
+Below ~C-e~ binding is used to send a command to all panes, in all
+windows, but *only in the current session*.
+
+# "docker" Chroma lexer works great for .tmux.conf.
+#+begin_src docker
+bind C-e command-prompt -p "Command:" \
+         "run \"tmux list-panes -s -F '##{session_name}:##{window_index}.##{pane_index}' \
+                | xargs -I PANE tmux send-keys -t PANE '%1' Enter\""
+#+end_src
+**** Older version (circa 2014)
+:PROPERTIES:
+:CUSTOM_ID: tmux-send-cmd-to-all-panes-old
+:END:
+# "docker" Chroma lexer works great for .tmux.conf.
+#+begin_src docker
+# Send the same command to all panes/windows/sessions
+bind E command-prompt -p "Command:" \
+       "run \"tmux list-sessions                                           -F '##{session_name}' \
+              | xargs -I SESS          tmux list-windows  -t SESS          -F 'SESS:##{window_index}' \
+              | xargs -I SESS_WIN      tmux list-panes    -t SESS_WIN      -F 'SESS_WIN.##{pane_index}' \
+              | xargs -I SESS_WIN_PANE tmux send-keys     -t SESS_WIN_PANE '%1' Enter\""
+#+end_src
+*** tmux Shift + Mouse                                     :mouse:copy:paste:
+:PROPERTIES:
+:EXPORT_HUGO_BUNDLE: tmux-shift-plus-mouse
+:EXPORT_FILE_NAME: index
+:EXPORT_DATE: 2014-08-28T16:47:46-04:00
+:EXPORT_HUGO_USE_CODE_FOR_KBD: t
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :versions '((tmux . "2.6+") (tcsh . "6.17.00") (xterm . "X.Org 6.8.99.903(327)"))
+:END:
+#+begin_description
+Using mouse to copy/paste in =tmux= /panes/.
+#+end_description
+
+I had been missing the /"select and middle-click"/ method for copying
+and pasting stuff in =tmux= panes.
+
+Thanks to [[http://superuser.com/questions/598718/how-do-i-select-entire-words-with-tmuxs-mouse-mode][this]] post, I learned that I can use the ~Shift~ key and
+bypass =tmux='s own copy and paste method.
+
+|------------------------------------------+--------------------------------------------------------------|
+| Key/Mouse Binding                        | Action                                                       |
+|------------------------------------------+--------------------------------------------------------------|
+| ~Shift~ + Mouse left button double-click | Copies the double-clicked word                               |
+| ~Shift~ + Select using mouse             | Copies the selection                                         |
+| ~Shift~ + Mouse middle button click      | Pastes the copied text using above method in the =tmux= pane |
+|------------------------------------------+--------------------------------------------------------------|
+
+* Footnotes
+
+[fn:8] I replaced the space with =%20= so that you can click that link
+right away, but you can type the literal space when typing in the
+browser address bar.
+
+[fn:7] No wonder you will see, what I call "headline hashes", for all
+post sub-headings on my blog :smile:.
+
+[fn:6] I have set my tmux prefix to ~C-z~.
+
+[fn:5] The =.md= extension for =index.md=, =_index.md=, and all other
+content files in this post is just an example. The extension can be
+=.html= or any of any valid MIME type recognized by Hugo.
+
+[fn:4] It's a qualified "all other" --- That does not count the content
+files further nested in leaf and branch bundles in that =foo= section.
+
+[fn:3] [[http://plantuml.com/activity-diagram-legacy][Legacy]] vs [[http://plantuml.com/activity-diagram-beta][new (beta)]] PlantUML syntax for activity diagrams
+
+[fn:2] See {{{inforef(https://orgmode.org/manual/References.html,(org)
+References)}}} for more information on those field references.
+
+[fn:1] Feel free to ask for more explanation in comments in the case
+you don't use =use-package=.
+
+* COMMENT Local Variables                                           :ARCHIVE:
+# Local Variables:
+# fill-column: 70
+# eval: (auto-fill-mode 1)
+# eval: (toggle-truncate-lines 1)
+# org-refile-targets: nil
+# eval: (add-hook 'after-save-hook #'org-hugo-export-wim-to-md-after-save :append :local)
+# org-hugo-footer: "\n\n[//]: # \"Exported with love from a post written in Org mode\"\n[//]: # \"- https://github.com/yssource/home\""
+# End:
