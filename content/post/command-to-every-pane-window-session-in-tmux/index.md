@@ -121,3 +121,6 @@ bind E command-prompt -p "Command:" \
 ````
 
 [^fn:1]: I have set my tmux prefix to <kbd>C-z</kbd>.
+
+[//]: # "Exported with love from a post written in Org mode"
+[//]: # "- https://github.com/yssource/home"

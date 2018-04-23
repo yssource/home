@@ -24,3 +24,6 @@ bypass `tmux`'s own copy and paste method.
 | <kbd>Shift</kbd> + Mouse left button double-click | Copies the double-clicked word                               |
 | <kbd>Shift</kbd> + Select using mouse             | Copies the selection                                         |
 | <kbd>Shift</kbd> + Mouse middle button click      | Pastes the copied text using above method in the `tmux` pane |
+
+[//]: # "Exported with love from a post written in Org mode"
+[//]: # "- https://github.com/yssource/home"

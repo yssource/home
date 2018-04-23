@@ -91,13 +91,16 @@ main.css diff=mincss
 
 ## Beautiful Result {#beautiful-result}
 
-<a id="org36d0e14"></a>
+<a id="org5194386"></a>
 
 {{< figure src="images/git-diff-minified-js-and-css/git-diff-minified-js.png" caption="Figure 1: `git diff` of minified JS as seen in _Magit_" >}}
 
 Isn't that better than how GitHub shows the _exact same commit
 diff_? :sunglasses:
 
-<a id="orgb0aa136"></a>
+<a id="orgf66058a"></a>
 
 {{< figure src="images/git-diff-minified-js-and-css/github-diff-minified-js.png" caption="Figure 2: Same commit `diff` shown on _GitHub_" >}}
+
+[//]: # "Exported with love from a post written in Org mode"
+[//]: # "- https://github.com/yssource/home"
