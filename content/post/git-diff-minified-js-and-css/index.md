@@ -91,14 +91,14 @@ main.css diff=mincss
 
 ## Beautiful Result {#beautiful-result}
 
-<a id="org5194386"></a>
+<a id="org43bd7f8"></a>
 
 {{< figure src="images/git-diff-minified-js-and-css/git-diff-minified-js.png" caption="Figure 1: `git diff` of minified JS as seen in _Magit_" >}}
 
 Isn't that better than how GitHub shows the _exact same commit
 diff_? :sunglasses:
 
-<a id="orgf66058a"></a>
+<a id="org6927e9c"></a>
 
 {{< figure src="images/git-diff-minified-js-and-css/github-diff-minified-js.png" caption="Figure 2: Same commit `diff` shown on _GitHub_" >}}
 
