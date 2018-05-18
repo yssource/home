@@ -3,13 +3,13 @@ title = "Webpack + Angular.js + Ionic + PouchDB + Wechat(微信) + H5 + Adobe Ed
 author = ["Jimmy.M.Gong"]
 description = "Webpack, Angular.js, Ionic, Wechat, H5, Adobe Edge, Wordpress, Magento, 音乐贺卡"
 date = 2017-07-20
-tags = ["Webpack", "Angular.js", "Ionic", , , , , , "Edge", , , ]
+tags = ["Webpack", "Angular.js", "Ionic", "PouchDB", "Wechat", "微信", "H5", "Adobe", "Edge", "Wordpress", "Magento", "音乐贺卡"]
 categories = ["mobile", "App"]
 draft = false
 [menu.foo]
   parent = "main"
   weight = 10
-  identifier = "music-greeting"
+  identifier = "music-greeting-audi"
 +++
 
 ## Demo {#demo}
@@ -347,7 +347,7 @@ draft = false
     -   每天美文
     -   2016 新年相册
     -   音乐
-    -   <a id="org3a4a712"></a>[Flash 动画](https://yssource.ddq.space/post/tutorial/flash/)
+    -   <a id="orgd457720"></a>[Flash 动画](https://yssource.ddq.space/post/tutorial/flash/)
         包含十几种动态的 Flash 动画 模板, 如飘落的秋叶, 满天飞的人民币, 等等
 
         |                                                                                                                 |                                                                                                                 |                                                                                                                 |                                                                                                                 |

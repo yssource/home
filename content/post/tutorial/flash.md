@@ -3,13 +3,13 @@ title = "Flash 动画 模块详解"
 author = ["Jimmy.M.Gong"]
 description = "Webpack, Angular.js, Ionic, Wechat, H5, Adobe Edge, Wordpress, Magento, 音乐贺卡"
 date = 2017-07-20
-tags = ["Webpack", "Angular.js", "Ionic", , , , , , "Edge", , , ]
+tags = ["Webpack", "Angular.js", "Ionic", "PouchDB", "Wechat", "微信", "H5", "Adobe", "Edge", "Wordpress", "Magento", "音乐贺卡"]
 categories = ["mobile", "App"]
 draft = false
 [menu.foo]
   parent = "main"
   weight = 10
-  identifier = "music-greeting"
+  identifier = "music-greeting-flash"
 +++
 
 ## [Flash 动画 实现详解](https://yssource.github.io/2016/10/26/audi/#audi_menu_flash) {#flash-动画-实现详解}
@@ -39,7 +39,7 @@ draft = false
 
 1.  File: flash/index.js[^fn:1]
 
-    <a id="org6f87693"></a>
+    <a id="org9b66a50"></a>
     {{< highlight javascript "linenos=table, linenostart=1" >}}
     'use strict';
     var angular = require('angular');
