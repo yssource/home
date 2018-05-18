@@ -347,7 +347,7 @@ draft = false
     -   每天美文
     -   2016 新年相册
     -   音乐
-    -   <a id="org943f8e7"></a>[Flash 动画](https://yssource.github.io/2016/10/27/audi_flash/)
+    -   <a id="org943f8e7"></a>[Flash 动画](https://yssource.ddq.space/post/tutorial/flash/)
         包含十几种动态的 Flash 动画 模板, 如飘落的秋叶, 满天飞的人民币, 等等
 
         |                                                                                                                 |                                                                                                                 |                                                                                                                 |                                                                                                                 |
