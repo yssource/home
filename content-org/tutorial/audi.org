@@ -1,0 +1,342 @@
+# -*- mode:org; epa-file-encrypt-to: ("yssource@163.com"); org-confirm-babel-evaluate: nil -*-
+#+title: Webpack + Angular.js + Ionic + PouchDB + Wechat(微信) + H5 + Adobe Edge + Wordpress Api + Magento Api + 音乐贺卡
+#+author: Jimmy.M.Gong
+#+date: 2017-07-20
+
+#+hugo_base_dir: ../../
+#+hugo_section: post/tutorial
+#+hugo_tags: tutorial toml "cross-link"
+#+hugo_categories: cat1 cat2
+#+hugo_menu: :menu "foo" :weight 10 :parent main :identifier music-greeting
+#+description: Some description for this post.
+
+
+* Demo
+[[http://audi.agogm.com/][http://audi.agogm.com/]]
+| [[http://audi.agogm.com/][http://ofjaqrxxj.bkt.clouddn.com/audi/1432928487.jpg]] | [[http://audi.agogm.com/][http://ofjaqrxxj.bkt.clouddn.com/audi/711592415.jpg]] |
+* 为什么会有这个项目
+- 微信营销
+  市场上微信营销太过于简单粗暴, 毫无美感.
+  然而这个借鉴市场上流行的音乐贺卡, 企业场景应用 APP 模式, 整合微信营销
+* 这个项目会开源吗
+技术要点如题, 我会结合代码给大家详解整个项目, 根据 Followers 活跃程度, 再决定是否在 [[https://github.com/yssource][github]] 开源
+<!--more-->
+* Framework
+1. Webpack
+2. AngularJs
+3. Ionic 1
+4. PouchDB
+   应用在 *音乐* 模块, 实现 *music* module
+5. Wechat(微信)
+   应用在 *Home* 模块, 实现 微信服务号的认证
+6. Adobe Edge
+   应用在 *2016 新年相册* 模块, 实现 *card* module
+7. Wordpress Api
+   应用在 *每天美文* 模块, Wordpress 作为 backend, 利用 Wordpress API v2 实现 *wordpress* module
+8. Magento Api
+   应用在 *外海购物* 模块, Magento x2 作为 backend, 利用 Magento API 实现 *shopping* module
+* Source Structure Tree
+#+BEGIN_SRC sh
+  ├── ./card
+  │   ├── ./card/constants
+  │   │   ├── ./card/constants/card.js
+  │   │   ├── ./card/constants/card.test.js
+  │   │   └── ./card/constants/index.js
+  │   ├── ./card/controllers
+  │   │   ├── ./card/controllers/card.js
+  │   │   ├── ./card/controllers/card.test.js
+  │   │   └── ./card/controllers/index.js
+  │   ├── ./card/index.js
+  │   ├── ./card/tests.webpack.js
+  │   └── ./card/views
+  │       └── ./card/views/home.html
+  ├── ./flash
+  │   ├── ./flash/controllers
+  │   │   ├── ./flash/controllers/flash.controller.js
+  │   │   ├── ./flash/controllers/flash.controller.test.js
+  │   │   └── ./flash/controllers/index.js
+  │   ├── ./flash/index.js
+  │   ├── ./flash/services
+  │   │   ├── ./flash/services/flash.service.js
+  │   │   ├── ./flash/services/flash.service.test.js
+  │   │   └── ./flash/services/index.js
+  │   ├── ./flash/tests.webpack.js
+  │   └── ./flash/views
+  │       └── ./flash/views/home.html
+  ├── ./h5
+  │   ├── ./h5/controllers
+  │   │   ├── ./h5/controllers/h5.js
+  │   │   ├── ./h5/controllers/h5.test.js
+  │   │   └── ./h5/controllers/index.js
+  │   ├── ./h5/index.js
+  │   ├── ./h5/tests.webpack.js
+  │   └── ./h5/views
+  │       ├── ./h5/views/home.html
+  │       ├── ./h5/views/pengYouQuan.html
+  │       ├── ./h5/views/phone_share.css
+  │       └── ./h5/views/qingRenJie.html
+  ├── ./home
+  │   ├── ./home/controllers
+  │   │   ├── ./home/controllers/home.controller.js
+  │   │   ├── ./home/controllers/home.controller.test.js
+  │   │   └── ./home/controllers/index.js
+  │   ├── ./home/directives
+  │   │   ├── ./home/directives/home.directive.html
+  │   │   ├── ./home/directives/home.directive.js
+  │   │   ├── ./home/directives/home.directive.test.js
+  │   │   └── ./home/directives/index.js
+  │   ├── ./home/index.js
+  │   ├── ./home/services
+  │   │   ├── ./home/services/home.service.js
+  │   │   ├── ./home/services/home.service.test.js
+  │   │   └── ./home/services/index.js
+  │   ├── ./home/tests.webpack.js
+  │   └── ./home/views
+  │       └── ./home/views/home.html
+  ├── ./main.js
+  ├── ./main-mymobileapp.js
+  ├── ./main-mymobileapp.test.js
+  ├── ./main.test.js
+  ├── ./main-web.js
+  ├── ./main-web.test.js
+  ├── ./menu
+  │   ├── ./menu/controllers
+  │   │   ├── ./menu/controllers/index.js
+  │   │   ├── ./menu/controllers/menu.controller.js
+  │   │   └── ./menu/controllers/menu.controller.test.js
+  │   ├── ./menu/directives
+  │   │   ├── ./menu/directives/index.js
+  │   │   ├── ./menu/directives/menu.directive.html
+  │   │   ├── ./menu/directives/menu.directive.js
+  │   │   ├── ./menu/directives/menu.directive.test.js
+  │   │   └── ./menu/directives/pre-img.html
+  │   ├── ./menu/index.js
+  │   ├── ./menu/tests.webpack.js
+  │   └── ./menu/views
+  │       ├── ./menu/views/home.html
+  │       └── ./menu/views/menu.html
+  ├── ./mp
+  │   ├── ./mp/constants
+  │   │   ├── ./mp/constants/index.js
+  │   │   ├── ./mp/constants/mp-config.json
+  │   │   ├── ./mp/constants/mp.js
+  │   │   └── ./mp/constants/mp.test.js
+  │   ├── ./mp/controllers
+  │   │   ├── ./mp/controllers/index.js
+  │   │   ├── ./mp/controllers/mp.js
+  │   │   └── ./mp/controllers/mp.test.js
+  │   ├── ./mp/filters
+  │   │   ├── ./mp/filters/index.js
+  │   │   ├── ./mp/filters/mp.js
+  │   │   └── ./mp/filters/mp.test.js
+  │   ├── ./mp/index.js
+  │   ├── ./mp/services
+  │   │   ├── ./mp/services/index.js
+  │   │   ├── ./mp/services/mp.js
+  │   │   └── ./mp/services/mp.test.js
+  │   ├── ./mp/tests.webpack.js
+  │   └── ./mp/views
+  │       └── ./mp/views/home.html
+  ├── ./music
+  │   ├── ./music/constants
+  │   │   ├── ./music/constants/index.js
+  │   │   ├── ./music/constants/music.constant.js
+  │   │   └── ./music/constants/music.constant.test.js
+  │   ├── ./music/controllers
+  │   │   ├── ./music/controllers/index.js
+  │   │   ├── ./music/controllers/music.controller.js
+  │   │   └── ./music/controllers/music.controller.test.js
+  │   ├── ./music/directives
+  │   │   ├── ./music/directives/index.js
+  │   │   ├── ./music/directives/music.directive.html
+  │   │   ├── ./music/directives/music.directive.js
+  │   │   ├── ./music/directives/music.directive.test.js
+  │   │   └── ./music/directives/playMe.directive.html
+  │   ├── ./music/filters
+  │   │   ├── ./music/filters/index.js
+  │   │   ├── ./music/filters/music.filter.js
+  │   │   └── ./music/filters/music.filter.test.js
+  │   ├── ./music/index.js
+  │   ├── ./music/services
+  │   │   ├── ./music/services/index.js
+  │   │   ├── ./music/services/music.service.js
+  │   │   └── ./music/services/music.service.test.js
+  │   ├── ./music/tests.webpack.js
+  │   ├── ./music/values
+  │   │   ├── ./music/values/index.js
+  │   │   ├── ./music/values/music.value.js
+  │   │   └── ./music/values/music.value.test.js
+  │   └── ./music/views
+  │       └── ./music/views/home.html
+  ├── ./picture
+  │   ├── ./picture/controllers
+  │   │   ├── ./picture/controllers/index.js
+  │   │   ├── ./picture/controllers/picture.js
+  │   │   └── ./picture/controllers/picture.test.js
+  │   ├── ./picture/directives
+  │   │   ├── ./picture/directives/index.js
+  │   │   ├── ./picture/directives/picture.html
+  │   │   ├── ./picture/directives/picture.js
+  │   │   └── ./picture/directives/picture.test.js
+  │   ├── ./picture/index.js
+  │   ├── ./picture/tests.webpack.js
+  │   └── ./picture/views
+  │       └── ./picture/views/home.html
+  ├── ./prj.txt
+  ├── ./profile
+  │   ├── ./profile/controllers
+  │   │   ├── ./profile/controllers/index.js
+  │   │   ├── ./profile/controllers/profile.js
+  │   │   └── ./profile/controllers/profile.test.js
+  │   ├── ./profile/index.js
+  │   ├── ./profile/tests.webpack.js
+  │   └── ./profile/views
+  │       └── ./profile/views/home.html
+  ├── ./settings
+  │   ├── ./settings/controllers
+  │   │   ├── ./settings/controllers/index.js
+  │   │   ├── ./settings/controllers/settingsCtrl.controller.js
+  │   │   └── ./settings/controllers/settingsCtrl.controller.test.js
+  │   ├── ./settings/directives
+  │   │   ├── ./settings/directives/index.js
+  │   │   ├── ./settings/directives/settings.directive.html
+  │   │   ├── ./settings/directives/settings.directive.js
+  │   │   └── ./settings/directives/settings.directive.test.js
+  │   ├── ./settings/index.js
+  │   ├── ./settings/services
+  │   │   ├── ./settings/services/index.js
+  │   │   ├── ./settings/services/settings.service.js
+  │   │   └── ./settings/services/settings.service.test.js
+  │   ├── ./settings/tests.webpack.js
+  │   └── ./settings/views
+  │       ├── ./settings/views/advance.html
+  │       ├── ./settings/views/flash.html
+  │       ├── ./settings/views/home.html
+  │       └── ./settings/views/settings.scss
+  ├── ./shopping
+  │   ├── ./shopping/constants
+  │   │   ├── ./shopping/constants/index.js
+  │   │   ├── ./shopping/constants/magento-config.json
+  │   │   ├── ./shopping/constants/shopping.js
+  │   │   └── ./shopping/constants/shopping.test.js
+  │   ├── ./shopping/controllers
+  │   │   ├── ./shopping/controllers/index.js
+  │   │   ├── ./shopping/controllers/shopping.js
+  │   │   └── ./shopping/controllers/shopping.test.js
+  │   ├── ./shopping/index.js
+  │   ├── ./shopping/magento.config.js
+  │   ├── ./shopping/services
+  │   │   ├── ./shopping/services/index.js
+  │   │   ├── ./shopping/services/shopping.js
+  │   │   └── ./shopping/services/shopping.test.js
+  │   ├── ./shopping/tests.webpack.js
+  │   └── ./shopping/views
+  │       └── ./shopping/views/home.html
+  ├── ./tests.webpack.js
+  ├── ./text
+  │   ├── ./text/index.js
+  │   ├── ./text/services
+  │   │   ├── ./text/services/index.js
+  │   │   ├── ./text/services/text.service.js
+  │   │   └── ./text/services/text.service.test.js
+  │   ├── ./text/tests.webpack.js
+  │   └── ./text/views
+  │       └── ./text/views/home.html
+  ├── ./utils
+  │   ├── ./utils/adobe
+  │   │   ├── ./utils/adobe/1_edgeActions.js
+  │   │   ├── ./utils/adobe/1_edge.js
+  │   │   ├── ./utils/adobe/266
+  │   │   │   ├── ./utils/adobe/266/6_edgeActions.js
+  │   │   │   └── ./utils/adobe/266/6_edge.js
+  │   │   ├── ./utils/adobe/2_edgeActions.js
+  │   │   ├── ./utils/adobe/2_edge.js
+  │   │   ├── ./utils/adobe/3_edgeActions.js
+  │   │   ├── ./utils/adobe/3_edge.js
+  │   │   ├── ./utils/adobe/4_edgeActions.js
+  │   │   ├── ./utils/adobe/4_edge.js
+  │   │   ├── ./utils/adobe/5_edgeActions.js
+  │   │   ├── ./utils/adobe/5_edge.js
+  │   │   ├── ./utils/adobe/6_edgeActions.js
+  │   │   ├── ./utils/adobe/6_edge.js
+  │   │   ├── ./utils/adobe/animate.css
+  │   │   ├── ./utils/adobe/edge.5.0.0.min.js
+  │   │   └── ./utils/adobe/edge.5.0.1.min.js
+  │   ├── ./utils/angular.js
+  │   ├── ./utils/constants
+  │   │   ├── ./utils/constants/index.js
+  │   │   ├── ./utils/constants/utils.constant.js
+  │   │   └── ./utils/constants/utils.constant.test.js
+  │   ├── ./utils/index.js
+  │   ├── ./utils/jweixin-1.1.0.js
+  │   ├── ./utils/magento-api-angularjs.js
+  │   ├── ./utils/microcard
+  │   │   ├── ./utils/microcard/animate.min.css
+  │   │   ├── ./utils/microcard/microcard.js
+  │   │   ├── ./utils/microcard/microcard.min.css
+  │   │   ├── ./utils/microcard/microcard.min.js
+  │   │   ├── ./utils/microcard/swiper.animate.min.js
+  │   │   ├── ./utils/microcard/swiper.jquery.min.js
+  │   │   ├── ./utils/microcard/swiper.min.css
+  │   │   └── ./utils/microcard/wxshare.js
+  │   ├── ./utils/services
+  │   │   ├── ./utils/services/index.js
+  │   │   ├── ./utils/services/utils.service.js
+  │   │   └── ./utils/services/utils.service.test.js
+  │   ├── ./utils/tabSlideBox.css
+  │   ├── ./utils/tabSlideBox.js
+  │   ├── ./utils/tests.webpack.js
+  │   ├── ./utils/uuzoom
+  │   │   └── ./utils/uuzoom/app-a757711f87d0099083c4cf0de63d5c09.css
+  │   └── ./utils/views
+  │       └── ./utils/views/home.html
+  ├── ./wordpress
+  │   ├── ./wordpress/constants
+  │   │   ├── ./wordpress/constants/index.js
+  │   │   ├── ./wordpress/constants/wordpress.js
+  │   │   ├── ./wordpress/constants/wordpress.test.js
+  │   │   └── ./wordpress/constants/wp-config.json
+  │   ├── ./wordpress/controllers
+  │   │   ├── ./wordpress/controllers/index.js
+  │   │   ├── ./wordpress/controllers/wordpress.js
+  │   │   └── ./wordpress/controllers/wordpress.test.js
+  │   ├── ./wordpress/index.js
+  │   ├── ./wordpress/tests.webpack.js
+  │   ├── ./wordpress/views
+  │   │   └── ./wordpress/views/home.html
+  │   └── ./wordpress/wp.config.js
+  └── ./wordpressDetail
+  ├── ./wordpressDetail/controllers
+  │   ├── ./wordpressDetail/controllers/index.js
+  │   ├── ./wordpressDetail/controllers/wordpressDetail.js
+  │   └── ./wordpressDetail/controllers/wordpressDetail.test.js
+  ├── ./wordpressDetail/index.js
+  ├── ./wordpressDetail/tests.webpack.js
+  └── ./wordpressDetail/views
+  └── ./wordpressDetail/views/home.html
+#+END_SRC
+* 实现了哪些功能
+** Home
+  1. Wechat(微信) 认证, 关联微信公众号
+  2. Menu
+     + 关注我们
+     + Home
+     + 设置
+     + 每天美文
+     + 2016 新年相册
+     + 音乐
+     + <<audi_menu_flash>>[[https://yssource.github.io/2016/10/27/audi_flash/][Flash 动画]]
+       包含十几种动态的 Flash 动画 模板, 如飘落的秋叶, 满天飞的人民币, 等等
+       | [[http://ofjaqrxxj.bkt.clouddn.com/audi/643250341.jpg][http://ofjaqrxxj.bkt.clouddn.com/audi/643250341.jpg]] | [[http://ofjaqrxxj.bkt.clouddn.com/audi/675269086.jpg][http://ofjaqrxxj.bkt.clouddn.com/audi/675269086.jpg]] | [[http://ofjaqrxxj.bkt.clouddn.com/audi/929630659.jpg][http://ofjaqrxxj.bkt.clouddn.com/audi/929630659.jpg]] | [[http://ofjaqrxxj.bkt.clouddn.com/audi/962464746.jpg][http://ofjaqrxxj.bkt.clouddn.com/audi/962464746.jpg]] |
+     + 海外代购
+     + 我的朋友圈
+* Local Variables                                                   :ARCHIVE:
+# Local Variables:
+# org-link-file-path-type: relative
+# fill-column: 70
+# eval: (auto-fill-mode 1)
+# eval: (toggle-truncate-lines 1)
+# org-refile-targets: nil
+# eval: (add-hook 'after-save-hook #'org-hugo-export-wim-to-md-after-save :append :local)
+# org-hugo-footer: "\n\n[//]: # \"Exported with love from a post written in Org mode\"\n[//]: # \"- https://github.com/yssource/home\""
+# End:
