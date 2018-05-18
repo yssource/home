@@ -3,8 +3,8 @@ title = "Flash 动画 模块详解"
 author = ["Jimmy.M.Gong"]
 description = "Webpack, Angular.js, Ionic, Wechat, H5, Adobe Edge, Wordpress, Magento, 音乐贺卡"
 date = 2017-07-20
-tags = ["Webpack", "Angular.js", , , , , , , "Edge", , , ]
-categories = ["mobile", ]
+tags = ["Webpack", "Angular.js", "Ionic", , , , , , "Edge", , , ]
+categories = ["mobile", "App"]
 draft = false
 [menu.foo]
   parent = "main"
@@ -39,7 +39,7 @@ draft = false
 
 1.  File: flash/index.js[^fn:1]
 
-    <a id="orgafb39a8"></a>
+    <a id="org6f87693"></a>
     {{< highlight javascript "linenos=table, linenostart=1" >}}
     'use strict';
     var angular = require('angular');

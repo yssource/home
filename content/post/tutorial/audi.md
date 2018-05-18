@@ -1,10 +1,10 @@
 +++
 title = "Webpack + Angular.js + Ionic + PouchDB + Wechat(微信) + H5 + Adobe Edge + Wordpress Api + Magento Api + 音乐贺卡"
 author = ["Jimmy.M.Gong"]
-description = "Some description for this post."
+description = "Webpack, Angular.js, Ionic, Wechat, H5, Adobe Edge, Wordpress, Magento, 音乐贺卡"
 date = 2017-07-20
-tags = ["tutorial", "toml", "cross-link"]
-categories = ["cat1", "cat2"]
+tags = ["Webpack", "Angular.js", "Ionic", , , , , , "Edge", , , ]
+categories = ["mobile", "App"]
 draft = false
 [menu.foo]
   parent = "main"
@@ -347,7 +347,7 @@ draft = false
     -   每天美文
     -   2016 新年相册
     -   音乐
-    -   <a id="org943f8e7"></a>[Flash 动画](https://yssource.ddq.space/post/tutorial/flash/)
+    -   <a id="org3a4a712"></a>[Flash 动画](https://yssource.ddq.space/post/tutorial/flash/)
         包含十几种动态的 Flash 动画 模板, 如飘落的秋叶, 满天飞的人民币, 等等
 
         |                                                                                                                 |                                                                                                                 |                                                                                                                 |                                                                                                                 |
@@ -355,6 +355,3 @@ draft = false
         | [![](http://ofjaqrxxj.bkt.clouddn.com/audi/643250341.jpg)](http://ofjaqrxxj.bkt.clouddn.com/audi/643250341.jpg) | [![](http://ofjaqrxxj.bkt.clouddn.com/audi/675269086.jpg)](http://ofjaqrxxj.bkt.clouddn.com/audi/675269086.jpg) | [![](http://ofjaqrxxj.bkt.clouddn.com/audi/929630659.jpg)](http://ofjaqrxxj.bkt.clouddn.com/audi/929630659.jpg) | [![](http://ofjaqrxxj.bkt.clouddn.com/audi/962464746.jpg)](http://ofjaqrxxj.bkt.clouddn.com/audi/962464746.jpg) |
     -   海外代购
     -   我的朋友圈
-
-
-## Local Variables {#local-variables}
