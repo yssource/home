@@ -14,7 +14,7 @@ draft = false
 
 ## [Flash 动画 实现详解](https://yssource.github.io/2016/10/26/audi/#audi_menu_flash) {#flash-动画-实现详解}
 
-{{< highlight sh "linenos=table, linenostart=1" >}}
+```sh
 ├── ./flash
 │   ├── ./flash/controllers
 │   │   ├── ./flash/controllers/flash.controller.js
@@ -28,7 +28,7 @@ draft = false
 │   ├── ./flash/tests.webpack.js
 │   └── ./flash/views
 │       └── ./flash/views/home.html
-{{< /highlight >}}
+```
 
 <div class="HTML">
   <div></div>
@@ -39,8 +39,8 @@ draft = false
 
 1.  File: flash/index.js[^fn:1]
 
-    <a id="org9b66a50"></a>
-    {{< highlight javascript "linenos=table, linenostart=1" >}}
+    <a id="org09de058"></a>
+    ```javascript
     'use strict';
     var angular = require('angular');
     var modulename = 'flash';
@@ -95,11 +95,11 @@ draft = false
 
         return app;
     };
-    {{< /highlight >}}
+    ```
 
 2.  File: flash/controller/flash.controller.js[^fn:2]
 
-    {{< highlight javascript "linenos=table, linenostart=1" >}}
+    ```javascript
     'use strict';
     var controllername = 'flashCtrl';
 
@@ -140,10 +140,10 @@ draft = false
         controller.$inject = deps;
         app.controller(fullname, controller);
     };
-    {{< /highlight >}}
+    ```
 3.  file: flash/service/flash.service.js[^fn:3]
 
-{{< highlight javascript "linenos=table, linenostart=1" >}}
+```javascript
 'use strict';
 var servicename = 'flashService';
 
@@ -273,8 +273,11 @@ module.exports = function (app) {
     service.$inject = dependencies;
     app.factory(servicename, service);
 };
-{{< /highlight >}}
+```
 
 [^fn:1]: flash/index.js
 [^fn:2]: flash/controoler/flash.controller.js
 [^fn:3]: flash/service/flash.service.js
+
+[//]: # "Exported with love from a post written in Org mode"
+[//]: # "- https://github.com/yssource/home"
