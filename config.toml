@@ -91,7 +91,8 @@ enableGitInfo = false
 
   # Font style.
   #   Choose from `default`, `classic`, or `playfair`.
-  font = "default"
+  # font = "default"
+  font = "classic"
 
   # Your details.
   name = "Jimmy M. Gong"
@@ -159,7 +160,8 @@ enableGitInfo = false
 
   # Enable global LaTeX math rendering?
   #   If false, you can enable it locally on a per page basis.
-  math = false
+  # math = false
+  math = true
 
   # Highlight.js options
   #   highlight
@@ -189,7 +191,8 @@ enableGitInfo = false
   #   For more info on the highlighting options, see:
   #   https://sourcethemes.com/academic/post/writing-markdown-latex/#highlighting-options
   highlight = true
-  highlight_languages = []
+  highlight_languages = ["lisp","c","c++","matlab","python","java","emacs-lisp", "javascript", "typescript"]
+  highlight_style = "solarized-dark"
   # highlight_style = "github"
 
   # Enable native social sharing buttons?
