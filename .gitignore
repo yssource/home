@@ -1,5 +1,16 @@
 public/
+themes/academic/
 .idea/
 content-org/*.org
 content-org/**/*.org
 # *.org
+*.rel
+*.thm
+*.tex
+*.pdf
+*.bbl
+*.out
+*.aux
+*.log
+*.toc
+*.docx
