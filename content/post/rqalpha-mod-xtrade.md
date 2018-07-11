@@ -24,7 +24,7 @@ creator = "Emacs 26.1 (Org mode 9.1.13 + ox-hugo)"
 
 ## 系统信息 {#系统信息}
 
-<a id="org3464ef6"></a>
+<a id="org19337db"></a>
 ```sh
 uname -op
 ```
@@ -36,7 +36,7 @@ x86_64 GNU/Linux
 
 ## 帮助 {#帮助}
 
-<a id="org318f8e0"></a>
+<a id="org4a98cc5"></a>
 ```sh
 rqalpha xtrade -h
 ```
@@ -76,7 +76,7 @@ Options:
 
 ## 买入 {#买入}
 
-<a id="org9b30bfd"></a>
+<a id="org764592f"></a>
 ```sh
 rqalpha xtrade buy 000001 8.98 100 p
 ```
@@ -103,7 +103,7 @@ auth success
 
 ## 卖出 {#卖出}
 
-<a id="orga459366"></a>
+<a id="org8b62571"></a>
 ```sh
 rqalpha xtrade sell 000001 8.98 100 p
 ```
@@ -134,7 +134,7 @@ auth success
 
 ### 撤指定买单 {#撤指定买单}
 
-<a id="org79f27d5"></a>
+<a id="org714a8ec"></a>
 ```sh
 rqalpha xtrade cancel b 000001 p
 ```
@@ -163,7 +163,7 @@ auth success
 
 ### 撤指定卖单 {#撤指定卖单}
 
-<a id="org7869a9f"></a>
+<a id="orgb22f23a"></a>
 ```sh
 rqalpha xtrade cancel s 000001 p
 ```
@@ -190,7 +190,7 @@ auth success
 
 ### 撤指定买&卖单 {#撤指定买-and-卖单}
 
-<a id="org88abda0"></a>
+<a id="org39cc8a6"></a>
 ```sh
 rqalpha xtrade cancel a 000001 p
 ```
@@ -218,7 +218,7 @@ auth success
 
 ## IPO 打新股 {#ipo-打新股}
 
-<a id="org56840b1"></a>
+<a id="orgbaf1804"></a>
 ```sh
 rqalpha xtrade ipo r
 ```
@@ -237,7 +237,7 @@ auth success
 
 ## 账户查询 {#账户查询}
 
-<a id="orge91b553"></a>
+<a id="org76cb3c3"></a>
 ```sh
 rqalpha xtrade account p
 ```
@@ -250,7 +250,7 @@ auth success
 
 ## 余额查询 {#余额查询}
 
-<a id="org2b724db"></a>
+<a id="org015b4be"></a>
 ```sh
 rqalpha xtrade balance p
 ```
@@ -263,7 +263,7 @@ auth success
 
 ## 仓位明细 {#仓位明细}
 
-<a id="orgd549795"></a>
+<a id="orga19555e"></a>
 ```sh
 rqalpha xtrade positions p
 ```
@@ -284,7 +284,7 @@ auth success
 
 ## 指定委托单 {#指定委托单}
 
-<a id="orgcf0994a"></a>
+<a id="org464e1c9"></a>
 ```sh
 rqalpha xtrade orders e 600000 p
 ```
@@ -308,7 +308,7 @@ auth success
 
 ## 指定成交单 {#指定成交单}
 
-<a id="orgc02dac1"></a>
+<a id="org8e6699c"></a>
 ```sh
 rqalpha xtrade orders d 600000 p
 ```
